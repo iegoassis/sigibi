@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGIBI - Sistema Integrado de Gerenciamento interno da Biblioteca</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SIGIBI - Sistema Integrado de Gerenciamento Interno da Biblioteca</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/alunos">Cadastro de Alunos</a></li>
+                <li><a href="/livros">Cadastro de Livros</a></li>
+                <li><a href="/emprestimos">Empréstimos</a></li>
+                <li><a href="/historico">Histórico</a></li>
+                <li><a href="/autores">Autores do Projeto</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <h2>Bem-vindo ao SIGIBI</h2>
+            <p>Utilize o menu acima para navegar pelas funcionalidades do sistema.</p>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 SIGIBI. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Python backend snippet to connect to SQLite -->
+    <script type="text/python">
+from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
+
+app = Flask(__name__)
+
+def init_db():
+    with sqlite3.connect('biblioteca.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('''CREATE TABLE IF NOT EXISTS alunos (
+                          id INTEGER PRIMARY KEY AUTOINCREMENT,
+                          nome TEXT NOT NULL,
+                          turma TEXT NOT NULL)''')
+        cursor.execute('''CREATE TABLE IF NOT EXISTS livros (
+                          id INTEGER PRIMARY KEY AUTOINCREMENT,
+                          titulo TEXT NOT NULL,
+                          autor TEXT NOT NULL,
+                          quantidade INTEGER NOT NULL)''')
+        cursor.execute('''CREATE TABLE IF NOT EXISTS emprestimos (
+                          id INTEGER PRIMARY KEY AUTOINCREMENT,
+                          aluno_id INTEGER,
+                          livro_id INTEGER,
+                          data_emprestimo DATE,
+                          data_devolucao DATE,
+                          FOREIGN KEY(aluno_id) REFERENCES alunos(id),
+                          FOREIGN KEY(livro_id) REFERENCES livros(id))''')
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/alunos', methods=['GET', 'POST'])
+def alunos():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        turma = request.form['turma']
+        with sqlite3.connect('biblioteca.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO alunos (nome, turma) VALUES (?, ?)', (nome, turma))
+        return redirect(url_for('alunos'))
+    with sqlite3.connect('biblioteca.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM alunos')
+        alunos = cursor.fetchall()
+    return render_template('alunos.html', alunos=alunos)
+
+@app.route('/livros', methods=['GET', 'POST'])
+def livros():
+    if request.method == 'POST':
+        titulo = request.form['titulo']
+        autor = request.form['autor']
+        quantidade = request.form['quantidade']
+        with sqlite3.connect('biblioteca.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO livros (titulo, autor, quantidade) VALUES (?, ?, ?)', (titulo, autor, quantidade))
+        return redirect(url_for('livros'))
+    with sqlite3.connect('biblioteca.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM livros')
+        livros = cursor.fetchall()
+    return render_template('livros.html', livros=livros)
+
+@app.route('/emprestimos', methods=['GET', 'POST'])
+def emprestimos():
+    if request.method == 'POST':
+        aluno_id = request.form['aluno_id']
+        livro_id = request.form['livro_id']
+        data_emprestimo = request.form['data_emprestimo']
+        data_devolucao = request.form['data_devolucao']
+        with sqlite3.connect('biblioteca.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('''INSERT INTO emprestimos (aluno_id, livro_id, data_emprestimo, data_devolucao) 
+                              VALUES (?, ?, ?, ?)''', (aluno_id, livro_id, data_emprestimo, data_devolucao))
+        return redirect(url_for('emprestimos'))
+    with sqlite3.connect('biblioteca.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('''SELECT emprestimos.id, alunos.nome, livros.titulo, 
+                          emprestimos.data_emprestimo, emprestimos.data_devolucao 
+                          FROM emprestimos 
+                          JOIN alunos ON emprestimos.aluno_id = alunos.id 
+                          JOIN livros ON emprestimos.livro_id = livros.id''')
+        emprestimos = cursor.fetchall()
+    return render_template('emprestimos.html', emprestimos=emprestimos)
+
+@app.route('/autores')
+def autores():
+    autores = [
+        "Iego Assis da Silva",
+        "Tainá Oliveira Lima",
+        "Monalisa Silva Costa",
+        "Pedro Henrique Sousa da Silva"
+    ]
+    return render_template('autores.html', autores=autores)
+
+if __name__ == '__main__':
+    init_db()
+    app.run(debug=True)
+    </script>
+</body>
+</html>
