@@ -3,71 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Livros - SIGIBI</title>
+    <title>Autores do Projeto - SIGIBI</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>SIGIBI - Cadastro de Livros</h1>
+            <h1>SIGIBI - Autores do Projeto</h1>
         </header>
 
         <nav>
             <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="alunos.html">Cadastro de Alunos</a></li>
-                <li><a href="livros.html" class="active">Cadastro de Livros</a></li>
+                <li><a href="livros.html">Cadastro de Livros</a></li>
                 <li><a href="emprestimos.html">Empréstimos</a></li>
                 <li><a href="historico.html">Histórico</a></li>
-                <li><a href="autores.html">Autores do Projeto</a></li>
+                <li><a href="autores.html" class="active">Autores do Projeto</a></li>
             </ul>
         </nav>
 
         <main>
-            <section class="form-section">
-                <h2>Cadastrar Novo Livro</h2>
-                <form id="livroForm">
-                    <div class="form-group">
-                        <label for="titulo">Título:</label>
-                        <input type="text" id="titulo" name="titulo" required>
+            <section class="autores-section">
+                <h2>Equipe de Desenvolvimento</h2>
+                
+                <div class="autores-grid">
+                    <div class="autor-card">
+                        <div class="autor-img">
+                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
+                        </div>
+                        <h3>Iego Assis da Silva</h3>
+                        <p>Desenvolvedor Back-end</p>
+                        <p>Responsável pela integração com banco de dados e lógica de negócios</p>
                     </div>
-                    <div class="form-group">
-                        <label for="autor">Autor:</label>
-                        <input type="text" id="autor" name="autor" required>
+                    
+                    <div class="autor-card">
+                        <div class="autor-img">
+                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
+                        </div>
+                        <h3>Tainá Oliveira Lima</h3>
+                        <p>Desenvolvedora Front-end</p>
+                        <p>Responsável pela interface do usuário e experiência do usuário</p>
                     </div>
-                    <div class="form-group">
-                        <label for="isbn">ISBN:</label>
-                        <input type="text" id="isbn" name="isbn">
+                    
+                    <div class="autor-card">
+                        <div class="autor-img">
+                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
+                        </div>
+                        <h3>Monalisa Silva Costa</h3>
+                        <p>Analista de Sistemas</p>
+                        <p>Responsável pela documentação e requisitos do sistema</p>
                     </div>
-                    <div class="form-group">
-                        <label for="quantidade">Quantidade:</label>
-                        <input type="number" id="quantidade" name="quantidade" min="1" value="1" required>
+                    
+                    <div class="autor-card">
+                        <div class="autor-img">
+                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
+                        </div>
+                        <h3>Pedro Henrique Sousa da Silva</h3>
+                        <p>Gerente de Projeto</p>
+                        <p>Responsável pelo gerenciamento do projeto e coordenação da equipe</p>
                     </div>
-                    <button type="submit">Cadastrar Livro</button>
-                </form>
-            </section>
-
-            <section class="list-section">
-                <h2>Acervo de Livros</h2>
-                <div class="search-bar">
-                    <input type="text" id="searchLivro" placeholder="Buscar livro...">
-                    <button class="search-btn">Buscar</button>
                 </div>
-                <table id="tabelaLivros">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Autor</th>
-                            <th>ISBN</th>
-                            <th>Disponíveis</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dados serão preenchidos via JavaScript -->
-                    </tbody>
-                </table>
             </section>
         </main>
 
