@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos - SIGIBI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SIGIBI - Cadastro de Alunos</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="alunos.html" class="active">Cadastro de Alunos</a></li>
+                <li><a href="livros.html">Cadastro de Livros</a></li>
+                <li><a href="emprestimos.html">Empréstimos</a></li>
+                <li><a href="historico.html">Histórico</a></li>
+                <li><a href="autores.html">Autores do Projeto</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="form-section">
+                <h2>Cadastrar Novo Aluno</h2>
+                <form id="alunoForm">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="turma">Turma:</label>
+                        <input type="text" id="turma" name="turma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="matricula">Matrícula:</label>
+                        <input type="text" id="matricula" name="matricula" required>
+                    </div>
+                    <button type="submit">Cadastrar Aluno</button>
+                </form>
+            </section>
+
+            <section class="list-section">
+                <h2>Alunos Cadastrados</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchAluno" placeholder="Buscar aluno...">
+                    <button class="search-btn">Buscar</button>
+                </div>
+                <table id="tabelaAlunos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Turma</th>
+                            <th>Matrícula</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 SIGIBI. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
