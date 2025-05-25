@@ -1,53 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIGIBI - Sistema Integrado de Gerenciamento Interno da Biblioteca</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>SIGIBI - Sistema Integrado de Gerenciamento Interno da Biblioteca</h1>
-        </header>
+{% extends 'base.html' %}
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="alunos.html">Cadastro de Alunos</a></li>
-                <li><a href="livros.html">Cadastro de Livros</a></li>
-                <li><a href="emprestimos.html">Empréstimos</a></li>
-                <li><a href="historico.html">Histórico</a></li>
-                <li><a href="autores.html">Autores do Projeto</a></li>
-            </ul>
-        </nav>
+{% block title %}Início{% endblock %}
 
-        <main>
-            <h2>Bem-vindo ao SIGIBI</h2>
-            <p>Utilize o menu acima para navegar pelas funcionalidades do sistema.</p>
-            
-            <div class="dashboard">
-                <div class="card">
-                    <h3>Alunos Cadastrados</h3>
-                    <p class="count">0</p>
-                </div>
-                <div class="card">
-                    <h3>Livros Disponíveis</h3>
-                    <p class="count">0</p>
-                </div>
-                <div class="card">
-                    <h3>Empréstimos Ativos</h3>
-                    <p class="count">0</p>
-                </div>
-            </div>
-        </main>
+{% block content %}
+<h2>Bem-vindo ao SIGIBI</h2>
+<p>Utilize o menu acima para navegar pelas funcionalidades do sistema.</p>
 
-        <footer>
-            <p>&copy; 2025 SIGIBI. Todos os direitos reservados.</p>
-        </footer>
+<div class="dashboard">
+    <div class="card">
+        <h3>Alunos Cadastrados</h3>
+        <p class="count">{{ total_alunos|default:"0" }}</p>
     </div>
-
-    <script src="scripts.js"></script>
-</body>
-</html>
+    <div class="card">
+        <h3>Livros Disponíveis</h3>
+        <p class="count">{{ total_livros|default:"0" }}</p>
+    </div>
+    <div class="card">
+        <h3>Empréstimos Ativos</h3>
+        <p class="count">{{ total_emprestimos|default:"0" }}</p>
+    </div>
+</div>
+{% endblock %}

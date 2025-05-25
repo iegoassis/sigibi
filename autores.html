@@ -1,77 +1,49 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autores do Projeto - SIGIBI</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>SIGIBI - Autores do Projeto</h1>
-        </header>
+{% extends 'base.html' %}
+{% load static %}
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="alunos.html">Cadastro de Alunos</a></li>
-                <li><a href="livros.html">Cadastro de Livros</a></li>
-                <li><a href="emprestimos.html">Empréstimos</a></li>
-                <li><a href="historico.html">Histórico</a></li>
-                <li><a href="autores.html" class="active">Autores do Projeto</a></li>
-            </ul>
-        </nav>
+{% block title %}Autores do Projeto - SIGIBI{% endblock %}
 
-        <main>
-            <section class="autores-section">
-                <h2>Equipe de Desenvolvimento</h2>
-                
-                <div class="autores-grid">
-                    <div class="autor-card">
-                        <div class="autor-img">
-                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
-                        </div>
-                        <h3>Iego Assis da Silva</h3>
-                        <p>Desenvolvedor Back-end</p>
-                        <p>Responsável pelo gerenciamento do projeto, coordenação da equipe e pela integração com banco de dados e lógica de negócios</p>
-                    </div>
-                    
-                    <div class="autor-card">
-                        <div class="autor-img">
-                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
-                        </div>
-                        <h3>Tainá Oliveira Lima</h3>
-                        <p>Desenvolvedora Front-end</p>
-                        <p>Responsável pela interface do usuário e experiência do usuário</p>
-                    </div>
-                    
-                    <div class="autor-card">
-                        <div class="autor-img">
-                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
-                        </div>
-                        <h3>Monalisa Silva Costa</h3>
-                        <p>Analista de Sistemas</p>
-                        <p>Responsável pela documentação e requisitos do sistema</p>
-                    </div>
-                    
-                    <div class="autor-card">
-                        <div class="autor-img">
-                            <img src="https://via.placeholder.com/150" alt="Foto do Autor">
-                        </div>
-                        <h3>Pedro Henrique Sousa da Silva</h3>
-                        <p>Gerente de Projeto</p>
-                        <p>Responsável pelo gerenciamento backend</p>
-                    </div>
-                </div>
-            </section>
-        </main>
+{% block content %}
+<section class="autores-section">
+    <h2>Equipe de Desenvolvimento</h2>
 
-        <footer>
-            <p>&copy; 2025 SIGIBI. Todos os direitos reservados.</p>
-        </footer>
+    <div class="autores-grid">
+        <div class="autor-card">
+            <div class="autor-img">
+                <img src="https://via.placeholder.com/150" alt="Foto de Autor 1">
+            </div>
+            <h3>Autor 1</h3>
+            <p>Desenvolvedor Backend</p>
+            <p>Responsável pelo planejamento do projeto, especialista em Python e Django.</p>
+        </div>
+
+        <div class="autor-card">
+            <div class="autor-img">
+                <img src="https://via.placeholder.com/150" alt="Foto de Autor 2">
+            </div>
+            <h3>Autor 2</h3>
+            <p>Desenvolvedor Frontend</p>
+            <p>Especialista em HTML, CSS e JavaScript.</p>
+        </div>
+
+        <div class="autor-card">
+            <div class="autor-img">
+                <img src="https://via.placeholder.com/150" alt="Foto de Autor 3">
+            </div>
+            <h3>Autor 3</h3>
+            <p>Analista de Sistemas</p>
+            <p>Responsável banco de dados.</p>
+        </div>
+
+                <div class="autor-card">
+            <div class="autor-img">
+                <img src="https://via.placeholder.com/150" alt="Foto de Autor 4">
+            </div>
+            <h3>Autor 3</h3>
+            <p>Analista de Sistemas</p>
+            <p>Responsável pela documentação.</p>
+        </div>
+
     </div>
-
-    <script src="scripts.js"></script>
-</body>
-</html>
+</section>
+{% endblock %}
